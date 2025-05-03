@@ -19,6 +19,11 @@ function processDirectory(dir, outputDir) {
     const files = fs.readdirSync(dir);
     
     files.forEach(file => {
+        // Skip index.md
+        if (file === 'index.md') {
+            return;
+        }
+        
         if (file.endsWith('.md')) {
             const markdown = fs.readFileSync(path.join(dir, file), 'utf8');
             const html = marked(markdown);
